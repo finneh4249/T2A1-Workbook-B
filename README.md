@@ -14,8 +14,6 @@ The process of bogo sort can be likened to sorting a deck of cards by throwing t
 - If the list is not sorted, go back to step 1 and repeat.
 - The pseudocode for bogo sort is quite simple:
 
-Python
-
 ```py
 while not is_sorted(list):
     shuffle(list)
@@ -68,9 +66,7 @@ Consider the list `[5, 1, 4, 2, 8]`
 
 Since no swaps were needed in the third pass, the list is sorted.
 
-Bubble sort has a worst-case and average-case time complexity of `O(n^2)`, where `(n)` is the number of items being sorted1. This makes it inefficient for large lists. However, it has a best-case time complexity of `O(n)` when the list is already sorted, as it only needs one pass to confirm the order.
-
-Python
+Bubble sort has a worst-case and average-case time complexity of `O(n^2)`, where `(n)` is the number of items being sorted. This makes it inefficient for large lists. However, it has a best-case time complexity of `O(n)` when the list is already sorted, as it only needs one pass to confirm the order.
 
 ```py
 def bubble_sort(arr):
@@ -136,14 +132,176 @@ Let’s compare the performance and efficiency of Bogo sort and Bubble sort, foc
 - **Optimsable:** Can be slightly optimised by stopping early if no swaps are made during a pass.
 
 While both Bogo sort and Bubble sort are not suitable for large-scale sorting tasks, Bubble sort is significantly more practical and predictable. Bogo sort serves as a cautionary example of inefficiency, while Bubble sort, despite its limitations, can be useful in specific scenarios and is a good starting point for learning about sorting algorithms.
-## Q2 Identify and explain the workings of TWO search algorithms and discuss and compare their performance/efficiency (i.e. Big O)
 
-Minimum 300 words
+## Q2 Identify and explain the workings of TWO search algorithms and discuss and compare their performance/efficiency (i.e. Big O)
 
 ### Binary Search
 
-Binary search is a search algorithm that works by repeatedly dividing the search space in half.
+Binary search is an efficient algorithm for finding the position of a target value within a sorted array. It operates on the principle of divide and conquer, significantly reducing the number of comparisons needed to find the target value compared to linear search.
+
+#### How Binary Search Works
+
+- **Initial Setup:** Start with two pointers, `low` and `high`, which represent the range of indices in the array. Initially, `low` is set to the first index `(0)` and `high` is set to the last index `(n-1)`.
+- **Finding the Middle:** Calculate the middle index `mid` using the formula: `mid = low + (high - low) / 2`. This formula ensures that the middle index is correctly calculated even for large values of `low` and `high`.
+- **Comparison:**
+  - If the middle element is the target: Return the index `mid`.
+  - If the target is less than the middle element: Narrow the search to the left half by setting high to `mid - 1`.
+  - If the target is greater than the middle element: Narrow the search to the right half by setting `low` to `mid + 1`.
+- **Repeat:** Continue the process until `low` exceeds `high`. If `low` exceeds `high` and the target has not been found, it means the target is not in the array.
+
+#### Example
+
+Consider the sorted array `[2, 5, 8, 12, 16, 23, 38, 56, 72, 91]` and the target value `23`
+
+- Initial pointers: `low = 0`, `high = 9`
+
+##### First iteration
+
+- Calculate `mid = (0 + 9) / 2 = 4`
+- Compare `array[4] = 16` with `23`
+- Since`23 > 16`, set `low = 5`
+
+##### Second iteration
+
+- Calculate `mid = (5 + 9) / 2 = 7`
+- Compare `array[7] = 56` with `23`
+- Since `23 < 56`, set `high = 6`
+
+##### Third iteration
+
+- Calculate mid = `(5 + 6) / 2 = 5`
+- Compare `array[5] = 23` with `23`
+- Target found at index `5`
+
+#### Time Complexity
+
+Binary search has a time complexity of `O(log n)`, where `(n)` is the number of elements in the array. This logarithmic time complexity makes binary search much more efficient than other search algorithms, especially for large datasets.
+
+#### Implementation
+Here is a simple implementation of binary search in Python:
+
+``` py
+def binary_search(arr, target):
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+```
+
+In summary, binary search is a powerful and efficient algorithm for searching in sorted arrays, leveraging the divide and conquer strategy to achieve logarithmic time complexity.
 
 ### Linear Search
 
-Linear search is a search algorithm that works by sequentially comparing each element in the search space.
+Linear search, also known as sequential search, is one of the simplest searching algorithms. It works by checking each element of a list one by one until the desired element is found or the list ends. This method is straightforward and easy to implement, making it a good starting point for understanding search algorithms.
+
+#### How Linear Search Works
+
+- **Start at the Beginning:** Begin with the first element of the list.
+- **Compare Each Element:** Compare the current element with the target value.
+- **Check for Match:**
+  - If the current element matches the target, return its index.
+  - If it does not match, move to the next element.
+- **Repeat:** Continue this process until the target is found or the end of the list is reached.
+- **End of List:** If the end of the list is reached without finding the target, return an indication that the target is not present in the list.
+
+#### Example
+
+Consider the list `[10, 50, 30, 70, 80, 20, 90, 40]` and the target value `30`:
+
+- First Element: Compare `10` with `30` (no match).
+- Second Element: Compare `50` with `30` (no match).
+- Third Element: Compare `30` with `30` (match found).
+- The target `30` is found at index `2`.
+
+#### Time Complexity
+
+Linear search has a time complexity of `O(n)`, where `(n)` is the number of elements in the list. This means that in the worst case, the algorithm will have to check every element in the list. The best case occurs when the target is the first element, resulting in a time complexity of `O(1)`.
+
+#### Implementation
+Here is a simple implementation of linear search in Python:
+
+```py
+def linear_search(arr, target):
+    for index, element in enumerate(arr):
+        if element == target:
+            return index
+    return -1
+```
+
+### Comparison
+
+Let’s delve deeper into the comparison between Linear Search and Binary Search, focusing on various aspects such as time complexity, space complexity, use cases, and practical considerations.
+
+#### Time Complexity
+
+##### Linear Search
+
+- **Worst Case:** `O(n)` - The target element is at the end of the list or not present.
+- **Best Case:** `O(1)` - The target element is the first element in the list.
+- **Average Case:** `O(n)` - On average, half of the elements need to be checked.
+
+##### Binary Search:
+
+- **Worst Case:** `O(log n)` - The target element is found after repeatedly halving the list.
+- **Best Case:** `O(1)` - The target element is the middle element on the first check.
+- **Average Case:** `O(log n)` - On average, the search space is halved with each step.
+
+#### Space Complexity
+
+##### Linear Search:
+
+- **Space Complexity:** **(O(1))** - Only a constant amount of extra space is needed, regardless of the list size.
+
+##### Binary Search:
+
+- **Space Complexity:** `O(1)` - Similar to linear search, it requires a constant amount of extra space.
+
+#### Use Cases
+
+##### Linear Search:
+
+- **Unsorted Lists:** Can be used on both sorted and unsorted lists.
+- **Small Lists:** Efficient for small datasets where the overhead of sorting is not justified.
+- **Linked Lists:** Suitable for data structures where random access is not possible.
+
+##### Binary Search:
+
+- **Sorted Lists:** Requires the list to be sorted beforehand.
+- **Large Lists**: Much more efficient for large datasets due to its logarithmic time complexity.
+- **Random Access:** Best suited for data structures that allow random access, such as arrays.
+
+#### Practical Considerations
+
+##### Linear Search:
+
+- **Simplicity:** Very easy to implement and understand.
+- **Versatility:** Can be applied to any list, regardless of whether it is sorted.
+- **Performance:** Inefficient for large datasets due to its linear time complexity.
+
+##### Binary Search:
+
+- **Efficiency:** Highly efficient for large, sorted datasets.
+- **Pre-sorting Requirement:** The list must be sorted, which can add to the overall time complexity if sorting is needed.
+- **Implementation:** Slightly more complex to implement compared to linear search but still straightforward.
+
+#### Example Scenarios
+
+##### Linear Search
+
+- **Finding a Name in an Unsorted List:** If you have a list of names and need to find a specific one, linear search is straightforward and doesn’t require sorting the list first.
+- **Checking for Existence:** Useful when you need to check if an element exists in a list without caring about the order.
+
+##### Binary Search
+
+- **Dictionary Lookup:** Efficient for looking up words in a sorted dictionary.
+- **Database Indexing:** Often used in databases where data is indexed and sorted, allowing for quick searches.
+
+Linear Search is simple, versatile, and works on any list, but it is inefficient for large datasets. It is best used for small or unsorted lists and when simplicity is a priority.
+
+Binary Search is highly efficient for large, sorted datasets, offering logarithmic time complexity. It requires the list to be sorted, making it less versatile but much faster for large-scale searches.
