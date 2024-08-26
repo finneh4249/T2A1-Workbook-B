@@ -196,6 +196,11 @@ def binary_search(arr, target):
 
 In summary, binary search is a powerful and efficient algorithm for searching in sorted arrays, leveraging the divide and conquer strategy to achieve logarithmic time complexity.
 
+https://www.geeksforgeeks.org/binary-search/
+https://www.programiz.com/dsa/binary-search
+https://www.freecodecamp.org/news/what-is-binary-search/
+https://brilliant.org/wiki/binary-search/
+
 ### Linear Search
 
 Linear search, also known as sequential search, is one of the simplest searching algorithms. It works by checking each element of a list one by one until the desired element is found or the list ends. This method is straightforward and easy to implement, making it a good starting point for understanding search algorithms.
@@ -224,6 +229,7 @@ Consider the list `[10, 50, 30, 70, 80, 20, 90, 40]` and the target value `30`:
 Linear search has a time complexity of `O(n)`, where `(n)` is the number of elements in the list. This means that in the worst case, the algorithm will have to check every element in the list. The best case occurs when the target is the first element, resulting in a time complexity of `O(1)`.
 
 #### Implementation
+
 Here is a simple implementation of linear search in Python:
 
 ```py
@@ -233,6 +239,11 @@ def linear_search(arr, target):
             return index
     return -1
 ```
+
+https://www.geeksforgeeks.org/linear-search/
+https://www.codingdrills.com/tutorial/introduction-to-searching-algorithms/linear-search
+https://www.bbc.co.uk/bitesize/guides/zjdkw6f/revision/3
+
 
 ### Comparison
 
