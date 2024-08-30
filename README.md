@@ -23,9 +23,12 @@ Despite its simplicity, bogo sort is extremely inefficient. Its average time com
 
 Bogo sort is not used in practice due to its inefficiency. It is often presented as a humorous example of a bad algorithm and is used to emphasize the importance of using efficient sorting algorithms for practical purposes. The name “bogo” is derived from the words “bogus” and “go,” indicating the randomness and inefficiency of this algorithm.
 
-https://www.geeksforgeeks.org/bogosort-permutation-sort/
-https://www.educative.io/answers/what-is-bogo-sort
-https://web.archive.org/web/20131210012102/http://richardhartersworld.com/cri_d/cri/2001/badsort.html
+#### References
+
+- [BogoSort or Permutation Sort 2016, GeeksforGeeks, viewed 26 August 2024 ](https://www.geeksforgeeks.org/bogosort-permutation-sort/)
+- [What is bogo sort? 2015, Educative, viewed 26 August 2024](https://www.educative.io/answers/what-is-bogo-sort)
+- [Inefficient sort algorithms 2023, Archive.org, viewed 26 August 2024](https://web.archive.org/web/20131210012102/http://richardhartersworld.com/cri_d/cri/2001/badsort.html)
+
 
 ### Bubble Sort
 
@@ -89,47 +92,59 @@ https://www.programiz.com/dsa/bubble-sort
 
 Let’s compare the performance and efficiency of Bogo sort and Bubble sort, focusing on their time complexity, practical use cases, and overall efficiency.
 
-#### Time Complexity
+#### Bogo Sort
 
-##### Bogo Sort
+##### Time Complexity
 
 - **Average Case:** `O(n x n!)`
-- **Worst Case:** Unbounded (theoretically could run forever)
-- **Best Case:** `O(n)` (if the list is already sorted and the first permutation is correct)
+    - Bogo sort generates random permutations until it finds a sorted one. The average time complexity is proportional to the number of possible permutations, which is (`n!`).
+- **Worst Case:** Unbounded
+    - In theory, Bogo sort could run indefinitely if it never stumbles upon the correct permutation.
+- **Best Case:** `O(n)` (if the list is already sorted)
+    - If the initial permutation happens to be sorted, Bogo sort terminates quickly.
 
-##### Bubble Sort
+##### Practical Use Cases
 
+- **Educational Tool:**
+    - Bogo sort serves as a cautionary example of inefficiency. It vividly illustrates the importance of using better sorting algorithms.
+- **Humor:**
+    - It’s often mentioned humorously in computer science circles due to its impracticality.
+- **Theoretical Interest:**
+    - Bogo sort is discussed in theoretical contexts to explore the limits of algorithmic efficiency.
+
+##### Efficiency
+
+- **Highly Inefficient:**
+    - Bogo sort’s reliance on random permutations makes it extremely slow for any real-world use.
+- **Unpredictable**:
+    - The time it takes to sort a list can vary widely, making it unreliable.
+- **Optimisable**:
+    - One optimisation is to avoid generating already checked permutations, reducing unnecessary work.
+
+#### Bubble Sort
+
+##### Time Complexity
 - **Average Case:** `O(n^2)`
 - **Worst Case:** `O(n^2)`
 - **Best Case:** `O(n)` (if the list is already sorted)
+    - Bubble sort performs better when the list is partially sorted initially.
 
-#### Practical Use Cases
+##### Practical Use Cases
 
-##### Bogo Sort
+- Educational Tool:
+    - Bubble sort is commonly used to teach sorting algorithms due to its simplicity.
+- Small Datasets:
+    - It can be used for small lists where performance isn’t critical.
+- Stability:
+    - Bubble sort maintains the relative order of equal elements, which can be useful in certain scenarios.
 
-- **Educational Tool:** Used to illustrate the concept of inefficient algorithms.
-- **Humour:** Often cited as a joke in computer science due to its impracticality.
-- **Theoretical Interest:** Sometimes discussed in theoretical computer science to understand the limits of algorithm efficiency.
-
-##### Bubble Sort
-
-- **Educational Tool:** Commonly used to teach the basics of sorting algorithms.
-- **Small Datasets:** Can be used for small lists where performance is not a critical concern.
-- **Stability:** Maintains the relative order of equal elements, which can be useful in certain applications.
-
-#### Efficiency
-
-##### Bogo Sort
-
-- **Highly Inefficient:** Due to its reliance on generating random permutations, it is extremely slow and impractical for any real-world use.
-- **Unpredictable**: The time it takes to sort a list can vary wildly, making it unreliable.
-- **Optimisable**: Can be optimised by removing already checked permutations, rather than randomly generating the same permutations over and over again.
-
-##### Bubble Sort
-
-- **Inefficient for Large Lists:** With a time complexity of `O(n^2)`, it becomes impractical for large datasets.
-- **Predictable:** The number of comparisons and swaps is more predictable compared to Bogo sort.
-- **Optimsable:** Can be slightly optimised by stopping early if no swaps are made during a pass.
+##### Efficiency
+- Inefficient for Large Lists:
+    - With `O(n^2)` time complexity, bubble sort becomes impractical for large datasets.
+- Predictable:
+    - The number of comparisons and swaps is more predictable compared to Bogo sort.
+- Optimisable:
+    - Early stopping (if no swaps occur during a pass) can slightly improve efficiency.
 
 While both Bogo sort and Bubble sort are not suitable for large-scale sorting tasks, Bubble sort is significantly more practical and predictable. Bogo sort serves as a cautionary example of inefficiency, while Bubble sort, despite its limitations, can be useful in specific scenarios and is a good starting point for learning about sorting algorithms.
 
